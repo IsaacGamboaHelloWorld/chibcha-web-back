@@ -3,6 +3,7 @@ import { pool } from './../db.js';
 export const getHostPlans = async(req, res) => {
     const result = await pool.query('SELECT * FROM host_plans')
     res.send(result.data);
+
 }
 
 export const createHostPlans = async(req, res) => {
