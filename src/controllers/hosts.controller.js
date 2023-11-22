@@ -2,6 +2,7 @@ import { pool } from './../db.js';
 
 export const getHosts = async(req, res) => {
     const result = await pool.query('SELECT * FROM hosts')
+    console.log('Entrando a get Host' , req.infoUser)
     res.send(result.data);
 }
 
