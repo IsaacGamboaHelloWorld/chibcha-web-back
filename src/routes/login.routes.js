@@ -8,6 +8,10 @@ const router = Router()
 router.post('/login',login);
 
 router.use((req,res,next)=>{
+
+    if (req.path === '/users' && req.method === 'POST') {
+        return next(); 
+      }
     const bearerHeader = req.headers['authorization'];
     if(typeof bearerHeader !== 'undefined'){
         console.log('se recibe cabecera')
