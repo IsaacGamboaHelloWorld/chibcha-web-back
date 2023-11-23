@@ -26,6 +26,9 @@ router.use((req,res,next)=>{
 
 router.use((req,res,next)=>{
     const token = req.token;
+    if (req.path === '/users' && req.method === 'POST') {
+        return next(); 
+      }
     jwt.verify(token,'secret_key',(err,data)=>{
         if(err){
             console.log('token invalido');
