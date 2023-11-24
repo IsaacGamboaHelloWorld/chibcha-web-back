@@ -3,7 +3,7 @@ import { pool } from "./../db.js";
 export const getHosts = async (req, res) => {
     const customer_id = req.infoUser.id;
     const [rows] = await pool.query(
-        "SELECT * FROM "+ 
+        "SELECT *, hosts.*, hosts.id AS id FROM "+ 
         "hosts "+
         "INNER JOIN host_plans ON hosts.host_plan_id = host_plans.id "+
         "INNER JOIN payment_plans ON hosts.payment_plan_id = payment_plans.id "+
@@ -42,6 +42,6 @@ export const updateHost = async (req, res) => {
 
 export const deleteHost = async (req, res) => {
     const { id } = req.params;
-    await pool.query("DELETE FROM hosts WHERE id = ?", { id });
+    await pool.query("DELETE FROM hosts WHERE id = ?", [id]);
     res.send("se elimino exitosamente!!!");
 };

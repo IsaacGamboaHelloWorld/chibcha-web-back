@@ -5,6 +5,6 @@ const router = Router()
 router.get('/host', getHosts)
 router.post('/host', createHost)
 router.put('/host', updateHost)
-router.delete('/host', deleteHost)
+router.delete('/host/:id', deleteHost)
 
 export default router
