@@ -1,9 +1,9 @@
 import { createPool } from 'mysql2/promise'
 
 export const pool = createPool({
-    host: '127.0.0.1',
+    host: 'monorail.proxy.rlwy.net',
     user:'root',
-    password:'',
-    port: 3306,
-    database: 'ChibchaWeb'
+    password:'C-B14Ah-FB61ABH4Df2DD6FDhccffhBB',
+    port: 54474,
+    database: 'railway'
 })
