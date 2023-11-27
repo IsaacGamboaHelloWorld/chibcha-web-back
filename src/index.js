@@ -31,6 +31,8 @@ app.use(tickets)
 app.use(tickets)
 
 
-
-app.listen(3000)
+const port = process.env.PORT || 3000;
+app.listen(port, "0.0.0.0", function () {
+    
+  });
 console.log('server is running in port 3000')
