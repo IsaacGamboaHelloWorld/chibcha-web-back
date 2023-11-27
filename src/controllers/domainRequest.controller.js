@@ -16,7 +16,7 @@ export const getDomainRequest = async (req, res) => {
 
 export const getAllDomainRequest = async (req, res) => {
     const [rows] = await pool.query(
-        "SELECT *,hosts.*,hosts.name AS host_name FROM " +
+        "SELECT *,hosts.*,hosts.name AS host_name, domain_distribuitors.name AS dm_name FROM " +
           "domain_requests " +
           "INNER JOIN hosts ON domain_requests.host_id = hosts.id " +
           "INNER JOIN domain_distribuitors ON domain_requests.domain_distribuitor_id = domain_distribuitors.id "

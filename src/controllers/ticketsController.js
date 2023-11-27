@@ -15,9 +15,10 @@ export const getTickets = async (req, res) => {
 
 export const getAllTickets = async (req, res) => {
     const [rows] = await pool.query(
-        "SELECT *,hosts.*,hosts.name AS host_name FROM " +
+        "SELECT *,hosts.*,hosts.name AS host_name, hosts.id AS host_id,tickets.id AS id  FROM " +
           "tickets " +
-          "INNER JOIN hosts ON tickets.host_id = hosts.id " 
+          "INNER JOIN hosts ON tickets.host_id = hosts.id " +
+          "INNER JOIN users ON users.id = hosts.customer_id"
       );
       res.send(rows);
 };

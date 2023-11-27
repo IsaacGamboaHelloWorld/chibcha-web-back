@@ -1,7 +1,7 @@
 import { pool } from "./../db.js";
 
 export const getUsers = async (req, res) => {
-  const [rows]= await pool.query(
+  const [rows] = await pool.query(
     "SELECT * FROM " +
       "customers " +
       "INNER JOIN users ON customers.user_id = users.id "
@@ -16,19 +16,19 @@ export const createUser = async (req, res) => {
     last_name,
     email,
     password,
-    role_id,
     type,
     corporation,
     address,
     job_title,
   } = req.body;
 
+  const role_id = type == 'Cliente' ? 1 : 2;
   const [rows] = await pool.query(
     "INSERT INTO users (role_id, email, name, last_name, password) VALUES (?, ?, ?, ?, ?)",
     [role_id, email, name, last_name, password]
   );
 
-  if (type === 1) {
+  if (type === 'Cliente') {
     await pool.query(
       "INSERT INTO customers (user_id, corporation, address) VALUES (?, ?, ?)",
       [rows.insertId, corporation, address]
