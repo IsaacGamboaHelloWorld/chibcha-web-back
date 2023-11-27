@@ -9,6 +9,7 @@ import domainDisRoutes from './routes/domainDistribuitors.routes.js'
 import paymentsPlansRoutes from './routes/paymen_plans.routes.js'
 import indexRoutes from './routes/index.routes.js'
 import prices from "./routes/hostPlansPrices.routes.js"
+import tickets from "./routes/tickets.routes.js"
 import  login  from "./routes/login.routes.js"
 
 const app = express()
@@ -24,6 +25,7 @@ app.use(hostRoutes)
 app.use(hostPlansRoutes)
 app.use(domainRequestRoutes)
 app.use(domainDisRoutes)
+app.use(tickets)
 
 
 

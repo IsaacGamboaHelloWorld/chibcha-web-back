@@ -1,8 +1,8 @@
 import { pool } from './../db.js';
 
 export const getDomainDis = async(req, res) => {
-    const result = await pool.query('SELECT * FROM domain_distribuitors')
-    res.send(result.data);
+    const [row] = await pool.query('SELECT * FROM domain_distribuitors')
+    res.send(row);
 }
 
 export const createDomainDis = async(req, res) => {
