@@ -3,9 +3,8 @@ import { pool } from "./../db.js"
 
 const router = Router()
 
-router.get('/ping', async (req , res) => {
-    const result = await pool.query('SELECT * from users')
-    res.json(result)
+router.get('/', async (req , res) => {
+    res.send('funciono correctamente')
  })
  
  export default router

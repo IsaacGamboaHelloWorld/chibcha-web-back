@@ -11,10 +11,12 @@ import indexRoutes from './routes/index.routes.js'
 import prices from "./routes/hostPlansPrices.routes.js"
 import tickets from "./routes/tickets.routes.js"
 import  login  from "./routes/login.routes.js"
+import index from "./routes/index.routes.js"
 
 const app = express()
 app.use(cors())
 app.use(express.json())
+app.use(index)
 app.use(login)
 app.use(hostRoutes)
 app.use(paymentsPlansRoutes)
@@ -25,6 +27,7 @@ app.use(hostRoutes)
 app.use(hostPlansRoutes)
 app.use(domainRequestRoutes)
 app.use(domainDisRoutes)
+app.use(tickets)
 app.use(tickets)
 
 
