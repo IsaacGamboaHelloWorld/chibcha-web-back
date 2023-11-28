@@ -4,7 +4,7 @@ export const getDomainRequest = async (req, res) => {
   const customer_id = req.infoUser.id;
 
   const [rows] = await pool.query(
-    "SELECT *,hosts.*,hosts.name AS host_name, domain_distribuitors.*, domain_distribuitors.name AS domain_distribuitors_name FROM " +
+    "SELECT *,hosts.*,hosts.name AS host_name, domain_distribuitors.*, domain_distribuitors.name AS domain_distribuitors_name, domain_requests.id AS domain_id FROM " +
       "domain_requests " +
       "INNER JOIN hosts ON domain_requests.host_id = hosts.id " +
       "INNER JOIN domain_distribuitors ON domain_requests.domain_distribuitor_id = domain_distribuitors.id " +
@@ -16,7 +16,7 @@ export const getDomainRequest = async (req, res) => {
 
 export const getAllDomainRequest = async (req, res) => {
     const [rows] = await pool.query(
-        "SELECT *,hosts.*,hosts.name AS host_name, domain_distribuitors.name AS dm_name FROM " +
+        "SELECT *,hosts.*,hosts.name AS host_name, domain_distribuitors.name AS dm_name, domain_requests.id AS domain_id FROM " +
           "domain_requests " +
           "INNER JOIN hosts ON domain_requests.host_id = hosts.id " +
           "INNER JOIN domain_distribuitors ON domain_requests.domain_distribuitor_id = domain_distribuitors.id "
@@ -33,14 +33,15 @@ export const createDomainRequest = async (req, res) => {
   res.send("se registro exitosamente!!!");
 };
 
+
 export const updateDomainRequest = async (req, res) => {
-  const { id, customer_id, domain_distribuidor_id, domain } = req.params;
+  const { status, id } = req.body;
   await pool.query(
-    "UPDATE domain_requests set customer_id = ?, domain_distribuidor_id = ?, domain = ? WHERE id = ?",
-    { id, customer_id, domain_distribuidor_id, domain }
+    'UPDATE domain_requests set state = ? WHERE id = ?', [ status, id ]
   );
   res.send("se actualizo exitosamente!!!");
 };
+
 
 export const deleteDomainRequest = async (req, res) => {
   const { id } = req.params;

@@ -31,3 +31,12 @@ export const createTicket = async (req, res) => {
   );
   res.send("se registro exitosamente!!!");
 };
+
+export const updateTicket = async (req, res) => {
+  const { status, id } = req.body;
+  await pool.query(
+    'UPDATE tickets set status = ? WHERE id = ?', [ status, id ]
+  );
+  res.send("se actualizo exitosamente!!!");
+};
+
